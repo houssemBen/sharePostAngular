@@ -1,0 +1,17 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Twangular</span>
+    <div style="position: absolute;right: 10px;">
+      <img [src]="user.profile_image_url_https" /> @{{user.screen_name}}
+    </div>
+  </mat-toolbar-row>
+
+</mat-toolbar>
+
+<div class="container">
+  <div style="padding-top:25px;padding-bottom:25px;border-radius:20px;padding-left:160px;margin-bottom:20px">
+    <textarea class="row" type="text" placeholder="Tweet here !" style="width:87%;border-radius:20px;padding-left:20px" [(ngModel)]="tweetText" name="tweetText"  cols="30" rows="5"></textarea>
+    <button class="row" mat-fab color="primary" style="float:right;margin-top:10px;margin-right: 140px;" type="button" (click)="tweet()">Tweeter</button>
+  </div>
+  <app-tweets></app-tweets>
+</div>

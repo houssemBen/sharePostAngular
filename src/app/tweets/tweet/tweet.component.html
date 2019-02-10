@@ -1,0 +1,53 @@
+<mat-card class="example-card">
+
+  <mat-card-header>
+    <mat-card-title>
+      <img [src]="tweet.user.profile_image_url_https" class="avatar" /> {{tweet.user.name}}
+    </mat-card-title>
+
+    <mat-card-subtitle style="margin-left: 60px;margin-top: -23px;">
+      (@{{tweet.user.screen_name}})
+      <span *ngIf="retweet" class="retweeted">
+        <mat-icon>autorenew</mat-icon> Retweeted by {{retweet.user.name}} (@{{retweet.user.screen_name}})
+      </span>
+    </mat-card-subtitle>
+    <div style="position: absolute;right: 0;">
+      <button type="button" class="btn btn-icon" [ngClass]="{'btn-success': tweet.favorited}" (click)="toggleAction('favorite')">
+        <mat-icon>favorite</mat-icon>
+        {{tweet.favorite_count}}
+      </button>
+      <button type="button" class="btn btn-icon" [ngClass]="{'btn-success': tweet.retweeted}" (click)="toggleAction('retweet')">
+        <mat-icon>share</mat-icon>
+        {{tweet.retweet_count}}
+      </button>
+    </div>
+  </mat-card-header>
+
+  <mat-card-content style="padding-left: 30px;">
+
+    <p [innerHTML]="tweet | tweet" style="padding-bottom:20px"></p>
+
+    <div *ngIf="hasPhoto(tweet)">
+      <img mat-card-image [src]="tweet.entities?.media[0].media_url_https" style="width:100%;height:340px" (click)="media = true"
+      />
+    </div>
+
+  </mat-card-content>
+
+  <mat-card-footer *ngIf="!retweet" style="float:right;margin:-11px;font-size: 13px;">
+    {{tweet.created_at | date:'medium'}}
+  </mat-card-footer>
+
+  <mat-card-footer *ngIf="retweet" style="float:right;margin:-11px;font-size: 13px;">
+    {{retweet.created_at | date:'medium'}}
+  </mat-card-footer>
+</mat-card>
+
+<!-- <clr-modal [(clrModalOpen)]="media" *ngIf="tweet.entities.media" clrModalSize="lg">
+  <h3 class="modal-title"><img [src]="tweet.user.profile_image_url_https" class="avatar" /> {{tweet.user.name}} (@{{tweet.user.screen_name}})
+    <span *ngIf="retweet" class="retweeted"><clr-icon shape="sync"></clr-icon> Retweeted by {{retweet.user.name}}</span></h3>
+    <div class="modal-body">
+      <img [src]="tweet.entities?.media[0].media_url_https" />
+    </div>
+    <div class="modal-footer" [innerHTML]="tweet | tweet"></div>
+</clr-modal> -->
