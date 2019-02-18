@@ -6,3 +6,31 @@
 body{
     background-color: #f1eeee
 }
+
+.dropZone{
+    margin: auto;
+    height: 100px;
+    border: 2px dashed #6c757d;
+    border-radius: 15px;
+}
+
+.contentArea{
+    color: #6c757d;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.mat-dialog-container{
+    border-radius: 10px!important;
+    display: block;
+    padding: 24px;
+    border-radius: 15px;
+    box-sizing: border-box;
+    overflow: auto;
+    outline: 0;
+    width: 100%;
+    height: 100%;
+    min-height: inherit;
+    max-height: inherit;
+}

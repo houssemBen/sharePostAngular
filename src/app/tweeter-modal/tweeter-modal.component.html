@@ -1,0 +1,48 @@
+<form>
+
+  <mat-form-field class="col-md-6">
+    <input matInput placeholder="Titre" [formControl]="titreFormControl" required>
+    <mat-error *ngIf="titreFormControl.hasError('required')">
+      Titre is
+      <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="col-md-6">
+    <input matInput placeholder="Description" [formControl]="descriptionFormControl" required>
+    <mat-error *ngIf="descriptionFormControl.hasError('required')">
+      Description is
+      <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="col-md-12" style="margin-top:10px">
+    <mat-select placeholder="Partager avec" [formControl]="groupesFormControl" multiple required>
+      <mat-option *ngFor="let groupe of groupes" [value]="groupe.id">{{groupe.name}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="groupesFormControl.hasError('required')">
+      Groupes is
+      <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <div class="col-md-12" style="margin-top:30px;cursor: pointer;" (click)="fileInput">
+
+    <file-drop customContentStyle="contentArea" customstyle="dropZone" headertext="Selectionner un fichier ou le glisser ici." (onFileDrop)="dropped($event)"
+      (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+      <mat-icon style="color:#6c757d;margin-bottom: 5px;margin-right: 5px;">cloud_upload</mat-icon>
+    </file-drop>
+        <input style="visibility:hidden" type="file" #fileInput
+               id="file"
+               (change)="handleFileInput($event.target.files)">
+    <div>
+      <span *ngFor="let item of files; let i=index">
+        {{ item.relativePath }}</span>
+    </div>
+  </div>
+
+  <div style="float: right;margin-top:20px">
+    <button mat-raised-button color="warn" style="margin-right:10px">Annuler</button>
+    <button mat-raised-button color="primary">Enregistrer</button>
+  </div>
+</form>
